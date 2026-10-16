@@ -1,0 +1,128 @@
+[
+  {
+    "slug": "birthday-mini",
+    "title": "С днём рождения",
+    "description": "Набор мини-открыток с яркими праздничными иллюстрациями. Подойдёт для подписи подарка, бирки на упаковку или тёплого пожелания близким.",
+    "collection": "birthday",
+    "tags": ["день рождения", "праздник", "мини", "подарок"],
+    "price": 20000,
+    "size": "4 × 7 см",
+    "packSize": "30 шт.",
+    "paper": "Мелованный картон 300 г/м²",
+    "edition": "Набор, 30 шт.",
+    "images": [
+      "/products/birthday-mini-1.jpg",
+      "/products/birthday-mini-2.jpg",
+      "/products/birthday-mini-3.jpg"
+    ],
+    "inStock": true
+  },
+  {
+    "slug": "teacher-mini",
+    "title": "День учителя",
+    "description": "Мини-открытки с тёплыми словами для учителей и воспитателей. Подойдут как дополнение к букету или небольшой знак внимания.",
+    "collection": "other",
+    "tags": ["учитель", "воспитатель", "праздник", "мини", "благодарность"],
+    "price": 20000,
+    "size": "4,5 × 7 см",
+    "packSize": "30 шт.",
+    "paper": "Картон 300 г/м²",
+    "edition": "Набор, 30 шт.",
+    "images": [
+      "/products/teacher-mini-1.jpg",
+      "/products/teacher-mini-2.jpg",
+      "/products/teacher-mini-3.jpg"
+    ],
+    "inStock": true
+  },
+  {
+    "slug": "summer-mini",
+    "title": "Летний набор",
+    "description": "Мини-открытки с акварельными фруктами, цветами и десертами. Летнее настроение в каждой карточке — для подарка, заказа или просто так.",
+    "collection": "summer",
+    "tags": ["лето", "цветы", "фрукты", "мини", "подарок"],
+    "price": 20000,
+    "size": "7 × 7 см",
+    "packSize": "30 шт.",
+    "paper": "Мелованная бумага 300 г/м²",
+    "edition": "Набор, 30 шт.",
+    "images": [
+      "/products/summer-mini-1.jpg",
+      "/products/summer-mini-2.jpg",
+      "/products/summer-mini-3.jpg"
+    ],
+    "inStock": true
+  },
+  {
+    "slug": "mom-mini",
+    "title": "Маме",
+    "description": "Нежные мини-открытки с акварельными цветами и тёплыми словами для самого родного человека.",
+    "collection": "other",
+    "tags": ["мама", "семья", "цветы", "любовь", "мини", "подарок"],
+    "price": 20000,
+    "size": "4,5 × 7 см",
+    "packSize": "30 шт.",
+    "paper": "Мелованный картон 300 г/м²",
+    "edition": "Набор, 30 шт.",
+    "images": [
+      "/products/mom-mini-1.jpg",
+      "/products/mom-mini-2.jpg",
+      "/products/mom-mini-3.jpg"
+    ],
+    "inStock": true
+  },
+  {
+    "slug": "wishes-mini",
+    "title": "Пожелания",
+    "description": "Мини-открытки с короткими добрыми пожеланиями. Для заказа, букета или просто чтобы порадовать близкого человека.",
+    "collection": "other",
+    "tags": ["пожелания", "благодарность", "мини", "подарок"],
+    "price": 20000,
+    "size": "5 × 7 см",
+    "packSize": "30 шт.",
+    "paper": "Мелованный картон 300 г/м²",
+    "edition": "Набор, 30 шт.",
+    "images": [
+      "/products/wishes-mini-1.jpg",
+      "/products/wishes-mini-2.jpg",
+      "/products/wishes-mini-3.jpg"
+    ],
+    "inStock": true
+  },
+  {
+    "slug": "gratitude-mini",
+    "title": "Благодарность",
+    "description": "Мини-открытки с благодарственными надписями и акварельными цветами. Идеальны как вкладыш в заказ или как знак внимания.",
+    "collection": "other",
+    "tags": ["благодарность", "пожелания", "цветы", "мини", "подарок"],
+    "price": 20000,
+    "size": "4,5 × 7 см",
+    "packSize": "30 шт.",
+    "paper": "Мелованный картон 300 г/м²",
+    "edition": "Набор, 30 шт.",
+    "images": [
+      "/products/gratitude-mini-1.jpg",
+      "/products/gratitude-mini-2.jpg",
+      "/products/gratitude-mini-3.jpg"
+    ],
+    "inStock": true
+  },
+  {
+  "slug": "new-year-mini",
+  "title": "Новый год",
+  "description": "Мини-открытки с новогодними иллюстрациями. Для подарка, вкладыша в заказ или праздничной бирки.",
+  "collection": "new-year",
+  "tags": ["новый год", "зима", "праздник", "мини", "подарок", "детская тематика"],
+  "price": 20000,
+  "size": "7 × 7 см",
+  "packSize": "30 шт.",
+  "paper": "Мелованная бумага 300 г/м²",
+  "edition": "Набор, 30 шт.",
+  "images": [
+    "/products/new-year-mini-1.jpg",
+    "/products/new-year-mini-2.jpg",
+    "/products/new-year-mini-3.jpg"
+  ],
+  "inStock": true
+}
+]
