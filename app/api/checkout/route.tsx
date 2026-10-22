@@ -31,7 +31,7 @@ export async function POST(request: Request) {
   } catch (err) {
     if (err instanceof z.ZodError) {
       return NextResponse.json(
-        { error: "Неверные данные", details: err.errors },
+        { error: "Неверные данные", details: err.issues },
         { status: 400 }
       );
     }
