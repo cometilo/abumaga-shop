@@ -6,11 +6,11 @@ import { Minus, Plus, Trash2 } from "lucide-react";
 import { useCart } from "@/components/cart/CartProvider";
 import { formatPrice } from "@/lib/products";
 import type { Product } from "@/lib/products";
+import { CheckoutForm } from "@/components/cart/CheckoutForm";
 
 export default function CartClient({ allProducts }: { allProducts: Product[] }) {
   const { items, remove, setQty, clear, totalCount } = useCart();
 
-  // Собираем полные данные о товарах из переданного массива
   const cartProducts = items
     .map((item) => {
       const product = allProducts.find((p) => p.slug === item.slug);
@@ -96,8 +96,17 @@ export default function CartClient({ allProducts }: { allProducts: Product[] }) 
                 >
                   {product.title}
                 </Link>
+
+                {/* Размер + материал */}
                 <p className="mt-1 text-sm text-muted">
-                  {formatPrice(product.price)} за шт.
+                  {product.size}
+                  {product.paper && ` · ${product.paper}`}
+                </p>
+
+                {/* Цена + упаковка */}
+                <p className="mt-1 text-sm text-muted">
+                  {formatPrice(product.price)} за комплект
+                  {product.packSize && ` · ${product.packSize}`}
                 </p>
               </div>
 
@@ -150,15 +159,8 @@ export default function CartClient({ allProducts }: { allProducts: Product[] }) 
             {formatPrice(total)}
           </span>
         </div>
-        <button
-          type="button"
-          className="mt-8 inline-flex h-14 w-full items-center justify-center rounded-base bg-accent px-10 text-base font-medium text-accent-foreground transition-transform hover:-translate-y-0.5 sm:w-auto"
-        >
-          Оформить заказ
-        </button>
-        <p className="mt-4 text-sm text-muted">
-          Оформление заказа — на следующем этапе.
-        </p>
+
+        <CheckoutForm />
       </div>
     </div>
   );

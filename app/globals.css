@@ -3,12 +3,14 @@
 @theme inline {
   --color-background: var(--bg);
   --color-surface:    var(--surface);
+  --color-header:     var(--header-bg);
   --color-foreground: var(--fg);
   --color-muted:      var(--muted);
   --color-border:     var(--border);
   --color-accent:     var(--accent);
   --color-accent-foreground: var(--accent-fg);
   --color-accent-2:   var(--accent-2);
+  --color-card-border: var(--card-border);
 
   --font-display: var(--font-display-family);
   --font-sans:    var(--font-sans-family);
@@ -39,38 +41,51 @@
   --color-surface-hover: var(--surface-hover);
 }
 
-/* ---------- LUX ---------- */
+/* ============================================
+   ТЕМЫ
+   ============================================ */
+
 :root,
 [data-theme="lux"] {
-  --bg:        oklch(0.985 0.005 80);
-  --surface:   oklch(0.995 0.003 80);
-  --fg:        oklch(0.24 0.012 70);
-  --muted:     oklch(0.52 0.015 80);
-  --border:    oklch(0.94 0.008 80);
-  --accent:    oklch(0.55 0.045 135);
-  --accent-fg: oklch(0.99 0.005 80);
-  --accent-2:  oklch(0.72 0.09 75);
-  --accent-hover: oklch(0.52 0.09 135);
-  --surface-hover: oklch(0.985 0.005 80);
+  /* Фон страницы — почти чистый белый лист */
+  --bg:        oklch(0.995 0.001 55);
+
+  /* header/footer — абсолютно белые, чтобы «парить» над контентом */
+  --header-bg: oklch(1 0 0);
+
+  /* Карточки — очень светлые, едва уловимый бумажный оттенок */
+  --surface:   oklch(0.98 0.005 55);
+  --surface-hover: oklch(0.965 0.008 55);
+
+  --fg:        oklch(0.28 0.05 55);
+  --muted:     oklch(0.55 0.02 55);
+
+  /* Обводки — светлее, но всё ещё читаемые */
+  --border:      oklch(0.92 0.02 55);   /* нейтральная для UI */
+  --card-border: oklch(0.89 0.03 55);   /* 👈 коричневая для карточек */
+
+  --accent:    oklch(0.48 0.10 55);
+  --accent-fg: oklch(0.98 0.01 55);
+  --accent-2:  oklch(0.65 0.12 55);
+  --accent-hover: oklch(0.42 0.10 55);
 
   --radius-value: 0.75rem;
-
   --font-display-family: var(--font-cormorant), ui-serif, Georgia, serif;
   --font-sans-family:    var(--font-inter), ui-sans-serif, system-ui, sans-serif;
 }
 
 /* ---------- WB ---------- */
 [data-theme="wb"] {
-  --bg:        oklch(1 0 0);
-  --surface:   oklch(1 0 0);
-  --fg:        oklch(0.15 0 0);
-  --muted:     oklch(0.50 0 0);
-  --border:    oklch(0.92 0 0);
-  --accent:    oklch(0.55 0.25 340);
-  --accent-fg: oklch(1 0 0);
+  --bg:        oklch(0.985 0.003 340);
+  --surface:   oklch(0.985 0.003 340);
+  --fg:        oklch(0.25 0.02 340);
+  --muted:     oklch(0.52 0.01 340);
+  --border:    oklch(0.88 0.03 340);
+  --accent:    oklch(0.50 0.24 340);
+  --accent-fg: oklch(0.99 0.005 340);
   --accent-2:  oklch(0.62 0.22 340);
-  --accent-hover: oklch(0.50 0.25 340);
-  --surface-hover: oklch(0.97 0 0);
+  --accent-hover: oklch(0.44 0.24 340);
+  --surface-hover: oklch(0.96 0.005 340);
 
   --radius-value: 0.5rem;
 
@@ -80,16 +95,16 @@
 
 /* ---------- OZON ---------- */
 [data-theme="ozon"] {
-  --bg:        oklch(0.99 0.003 240);
-  --surface:   oklch(0.97 0.005 240);
-  --fg:        oklch(0.15 0.030 250);
-  --muted:     oklch(0.50 0.020 250);
-  --border:    oklch(0.90 0.010 240);
-  --accent:    oklch(0.55 0.22 260);
+  --bg:        oklch(0.985 0.005 240);
+  --surface:   oklch(0.985 0.005 240);
+  --fg:        oklch(0.25 0.02 250);
+  --muted:     oklch(0.52 0.015 250);
+  --border:    oklch(0.88 0.04 250);
+  --accent:    oklch(0.50 0.22 260);
   --accent-fg: oklch(1 0 0);
-  --accent-2:  oklch(0.68 0.18 260);
-  --accent-hover: oklch(0.50 0.22 260);
-  --surface-hover: oklch(0.95 0.005 240);
+  --accent-2:  oklch(0.65 0.18 260);
+  --accent-hover: oklch(0.44 0.22 260);
+  --surface-hover: oklch(0.96 0.01 240);
 
   --radius-value: 0.75rem;
 
@@ -97,7 +112,9 @@
   --font-sans-family:    var(--font-inter), ui-sans-serif, system-ui, sans-serif;
 }
 
-/* ---------- БАЗА ---------- */
+/* ============================================
+   БАЗА
+   ============================================ */
 @layer base {
   html {
     color-scheme: light;
@@ -113,22 +130,27 @@
     transition: background-color 200ms ease, color 200ms ease;
     position: relative;
     min-height: 100vh;
+    font-weight: 500;
   }
 
-  /* SVG-шум — «бумажная» текстура */
-  body::before {
-    content: "";
-    position: fixed;
-    inset: 0;
-    z-index: -1;
-    pointer-events: none;
-    opacity: 0.05;
-    mix-blend-mode: soft-light;
-    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
-    background-size: 200px 200px;
-    background-repeat: repeat;
-    animation: noise-breathe 20s ease-in-out infinite;
-    will-change: opacity;
+  h1, h2, h3, h4, h5, h6 {
+    font-weight: 600;
+    letter-spacing: -0.01em;
+  }
+
+  h1, h2 {
+    font-weight: 700; /* Самые крупные заголовки — максимально плотные */
+  }
+
+  [data-theme="wb"],
+  [data-theme="ozon"] {
+    h1, h2, h3, h4, h5, h6 {
+      font-weight: 500; /* Возвращаем к нормальному, чтобы не было перебора */
+    }
+    
+    h1, h2 {
+      font-weight: 500; /* Для крупных заголовков оставляем 600 */
+    }
   }
 
   :focus-visible {
@@ -141,17 +163,19 @@
     background: var(--accent);
     color: var(--accent-fg);
   }
-  
+
   input[type="search"]::-webkit-search-cancel-button,
   input[type="search"]::-webkit-search-decoration,
   input[type="search"]::-webkit-search-results-button,
   input[type="search"]::-webkit-search-results-decoration {
     -webkit-appearance: none;
     appearance: none;
-}
+  }
 }
 
-/* ---------- КОМПОНЕНТЫ ---------- */
+/* ============================================
+   КОМПОНЕНТЫ
+   ============================================ */
 @layer components {
   .container-page {
     width: 100%;
@@ -172,34 +196,16 @@
   }
 }
 
-/* ---------- УТИЛИТЫ ---------- */
+/* ============================================
+   УТИЛИТЫ И АНИМАЦИИ
+   ============================================ */
 @layer utilities {
   .animate-fade-up {
     animation: fade-up 0.6s ease-out;
   }
 }
 
-/* ---------- КЕЙФРЕЙМЫ ---------- */
-@keyframes noise-breathe {
-  0%, 100% { opacity: 0.4; }
-  50%      { opacity: 0.6; }
-}
-
 @keyframes fade-up {
-  from { opacity: 0; transform: translateY(16px); }
+  from { opacity: 0; transform: translateY(12px); }
   to   { opacity: 1; transform: translateY(0); }
-}
-
-/* ---------- MEDIA ---------- */
-@media (prefers-reduced-motion: reduce) {
-  body::before {
-    animation: none;
-  }
-
-  *,
-  *::before,
-  *::after {
-    animation-duration: 0.01ms !important;
-    transition-duration: 0.01ms !important;
-  }
 }

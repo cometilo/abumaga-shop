@@ -36,13 +36,13 @@ export default function Home() {
         </div>
 
         <Link
-          href="/catalog?q=новый год"
+          href="/catalog?q=2027&label=Новый год"
           className="group block relative overflow-hidden rounded-base border border-border"
         >
           <div className="relative aspect-[16/9] md:aspect-[21/9] overflow-hidden">
             {/* Баннер */}
             <Image
-              src="/events/new-year-banner.jpg"
+              src="/events/new-year-2027-banner.jpg"
               alt="Новый год"
               fill
               sizes="100vw"
@@ -63,7 +63,7 @@ export default function Home() {
                   Новый год
                 </h2>
                 <p className="mt-4 max-w-md text-muted">
-                  Снегири, ёлки, зимние сюжеты — то, что согревает в холодные вечера.
+                  Ёлки, зимние сюжеты, тепло близких — то, что согревает в холодные вечера.
                 </p>
                 <span className="mt-6 inline-flex h-11 items-center rounded-base bg-accent px-6 text-sm font-medium text-accent-foreground transition-transform group-hover:-translate-y-0.5">
                   Смотреть подборку
@@ -90,35 +90,34 @@ export default function Home() {
           </div>
         </div>
 
-        <div className="grid grid-cols-2 gap-x-4 gap-y-6 sm:grid-cols-3 lg:grid-cols-4">
+        <div className="grid grid-cols-2 gap-6 md:grid-cols-3">
           {[
-              { slug: "birthday", name: "С днём рождения", search: "день рождения", image: "birthday_card" },
-              { slug: "caregiver-gift", name: "Подарок учителю", search: "учитель", image: "teacher_card" },
-              { slug: "food-gift", name: "Вкусный подарок", search: "вкусный", image: "sweet_card" },
-              { slug: "mom-gift", name: "Подарок маме", search: "мама", image: "mommy_card" },
-              { slug: "happiness-day", name: "День счастья", search: "счастье", image: "happiness_card" },
-              { slug: "wishes", name: "Пожелания и поздравления", search: "пожелания", image: "greetings_card" },
-              { slug: "love", name: "Любовь", search: "любовь", image: "love_card" },
-            ].map((gift) => (
-              <Link
-                key={gift.slug}
-                href={`/catalog?q=${encodeURIComponent(gift.search)}`}
-                className="group block rounded-base border border-border bg-surface p-4 transition-colors hover:border-accent"
-              >
-                <div className="relative aspect-square overflow-hidden rounded-base bg-accent/10 mb-4">
-                  <Image
-                    src={`/gifts/${gift.image}.jpg`}
-                    alt={gift.name}
-                    fill
-                    sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 25vw"
-                    className="object-cover transition-transform duration-500 group-hover:scale-[1.03]"
-                  />
-                </div>
-                <h3 className="font-display text-lg leading-tight transition-colors group-hover:text-accent">
-                  {gift.name}
-                </h3>
-              </Link>
-            ))}
+            { slug: "birthday",       name: "С днём рождения",         search: "день рождения", image: "birthday_card" },
+            { slug: "caregiver-gift", name: "Подарок учителю",         search: "учитель",       image: "teacher_card" },
+            { slug: "mom-gift",       name: "Подарок маме",            search: "мама",          image: "mommy_card" },
+            { slug: "wishes",         name: "Пожелания и поздравления", search: "пожелания",    image: "greetings_card" },
+            { slug: "love",           name: "Любовь",                  search: "любовь",        image: "love_card" },
+            { slug: "march-8",        name: "8 марта",                 search: "8 марта",       image: "8_march_card" },
+          ].map((gift) => (
+            <Link
+              key={gift.slug}
+              href={`/catalog?q=${encodeURIComponent(gift.search)}`}
+              className="group block rounded-base border border-border bg-surface p-4 transition-colors hover:border-accent"
+            >
+              <div className="relative aspect-square overflow-hidden rounded-base bg-accent/10 mb-4">
+                <Image
+                  src={`/gifts/${gift.image}.jpg`}
+                  alt={gift.name}
+                  fill
+                  sizes="(max-width: 640px) 50vw, 33vw"
+                  className="object-cover transition-transform duration-500 group-hover:scale-[1.03]"
+                />
+              </div>
+              <h3 className="font-display text-lg leading-tight transition-colors group-hover:text-accent">
+                {gift.name}
+              </h3>
+            </Link>
+          ))}
         </div>
       </section>
       {/* Секция 3: Весь каталог */}

@@ -1,18 +1,14 @@
 "use client";
 
 import { useState } from "react";
-import { Check, ShoppingBag } from "lucide-react";
+import { Check, ShoppingBag, Minus } from "lucide-react";
 import { useCart } from "./CartProvider";
 
-export function AddToCartButton({
-  slug,
-  packSize,
-}: {
-  slug: string;
-  packSize?: string;
-}) {
-  const { add } = useCart();
+export function AddToCartButton({ slug }: { slug: string }) {
+  const { add, remove, setQty, items } = useCart();
   const [addedQty, setAddedQty] = useState<number | null>(null);
+
+  const inCart = items.find((i) => i.slug === slug)?.quantity ?? 0;
 
   function handleAdd(quantity: number) {
     add(slug, quantity);
@@ -20,24 +16,43 @@ export function AddToCartButton({
     setTimeout(() => setAddedQty(null), 1500);
   }
 
+  function handleRemoveOne() {
+    if (inCart <= 1) {
+      remove(slug);
+    } else {
+      setQty(slug, inCart - 1);
+    }
+  }
+
   return (
-    <div className="mt-6">
-      {/* Надпись про упаковку */}
-      {packSize && (
-        <p className="mb-3 text-sm text-muted">
-          В упаковке <span className="font-medium text-foreground">{packSize}</span>
-        </p>
+    <div className="mt-6 space-y-4">
+      {/* Статус в корзине */}
+      {inCart > 0 && (
+        <div className="flex items-center justify-between gap-3 rounded-base border border-accent/30 bg-accent/5 px-4 py-3">
+          <p className="text-sm">
+            В корзине: <strong className="font-medium">{inCart} шт.</strong>
+          </p>
+          <button
+            type="button"
+            onClick={handleRemoveOne}
+            className="flex items-center gap-1 text-sm text-muted transition-colors hover:text-foreground"
+            aria-label="Убрать одну штуку"
+          >
+            <Minus className="h-3.5 w-3.5" />
+            Убрать
+          </button>
+        </div>
       )}
 
+      {/* Кнопки добавления */}
       <div className="flex flex-wrap items-center gap-3">
-        {/* Быстрые кнопки +1 / +5 / +10 упаковок */}
         <div className="flex items-center gap-2">
           {[1, 5, 10].map((qty) => (
             <button
               key={qty}
               type="button"
               onClick={() => handleAdd(qty)}
-              aria-label={`Добавить ${qty} упаковок`}
+              aria-label={`Добавить ${qty} шт.`}
               className="flex h-12 min-w-12 items-center justify-center rounded-base border border-border bg-surface px-4 text-sm font-medium transition-colors hover:border-accent hover:bg-surface-hover"
             >
               +{qty}
@@ -45,7 +60,6 @@ export function AddToCartButton({
           ))}
         </div>
 
-        {/* Основная кнопка — добавляет 1 упаковку */}
         <button
           type="button"
           onClick={() => handleAdd(1)}

@@ -94,12 +94,12 @@ export default function AboutPage() {
             Более сотни авторских карточек — на плотной бумаге и картоне,
             для праздников и тёплых слов.
           </p>
-        <Link
+          <Link
             href="/catalog"
-            className="mt-8 inline-flex h-14 items-center justify-center rounded-base bg-accent px-10 text-base font-medium text-accent-foreground shadow-sm transition-all hover:bg-accent-hover hover:-translate-y-0.5 hover:shadow-md active:translate-y-0 active:scale-[0.98]"
-            >
+            className="mt-8 inline-flex h-14 items-center rounded-base bg-accent px-10 text-base font-medium text-accent-foreground transition-transform hover:-translate-y-0.5"
+          >
             Смотреть каталог
-        </Link>
+          </Link>
         </div>
       </div>
     </div>

@@ -1,17 +1,21 @@
 "use client";
 
-import { useRouter } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
 import { Search, X } from "lucide-react";
 
 export function SearchBar() {
   const router = useRouter();
-  const [query, setQuery] = useState("");
-  const isFirstRender = useRef(true);
-  const lastPushed = useRef("");
+  const searchParams = useSearchParams();
+  const initialQuery = searchParams.get("q") ?? "";
 
+  const [query, setQuery] = useState(initialQuery);
+  const inputRef = useRef<HTMLInputElement>(null);
+  const isFirstRender = useRef(true);
+  const lastPushed = useRef(initialQuery);
+
+  // Debounce: обновляем URL через 300 мс после последнего ввода
   useEffect(() => {
-    // Пропускаем первый рендер — не перезаписываем URL при монтировании
     if (isFirstRender.current) {
       isFirstRender.current = false;
       return;
@@ -19,19 +23,22 @@ export function SearchBar() {
 
     const timer = setTimeout(() => {
       const trimmed = query.trim();
-      // Не пушим URL, если он уже такой же
       if (trimmed === lastPushed.current) return;
       lastPushed.current = trimmed;
 
-      const newUrl = trimmed ? `/catalog?q=${encodeURIComponent(trimmed)}` : "/catalog";
+      const newUrl = trimmed
+        ? `/catalog?q=${encodeURIComponent(trimmed)}`
+        : "/catalog";
       router.replace(newUrl, { scroll: false });
     }, 300);
 
     return () => clearTimeout(timer);
   }, [query, router]);
 
+  // Очищаем поиск и возвращаем фокус в поле — удобнее, чем кликать заново
   function clear() {
     setQuery("");
+    inputRef.current?.focus();
   }
 
   return (
@@ -41,6 +48,7 @@ export function SearchBar() {
         aria-hidden="true"
       />
       <input
+        ref={inputRef}
         type="search"
         value={query}
         onChange={(e) => setQuery(e.target.value)}

@@ -4,7 +4,13 @@ import productsData from "@/content/products.json";
 export const ProductSchema = z.object({
   slug: z.string(),
   title: z.string(),
-  description: z.string(),
+
+  // Парсер может вернуть null, если описания нет
+  description: z.string().nullable().default(""),
+
+  // Валидный список категорий. .catch("other") страхует от "грязных"
+  // значений из Wildberries ("gratitude", "teacher", "мини открытка" и т.п.),
+  // чтобы один битый товар не ронял весь каталог.
   collection: z
     .enum([
       "winter",
@@ -16,15 +22,26 @@ export const ProductSchema = z.object({
       "birthday",
       "other",
     ])
+    .catch("other")
     .optional(),
+
+  // Исходный тип изделия из характеристик WB — справочно, не для фильтра
+  productType: z.string().optional(),
+
   tags: z.array(z.string()).default([]),
+
   price: z.number().int().positive(),
   oldPrice: z.number().int().positive().optional(),
-  size: z.string(),
-  packSize: z.string().optional(),
-  paper: z.string(),
-  edition: z.string(),
-  images: z.array(z.string()).min(1),
+
+  // Могут быть null у парсерных товаров
+  size: z.string().nullable().default(""),
+  packSize: z.string().nullable().optional(),
+  paper: z.string().nullable().default(""),
+  edition: z.string().nullable().default(""),
+
+  // Может быть пустым, если фото не скачались — карточка покажет заглушку
+  images: z.array(z.string()).default([]),
+
   wbUrl: z.string().url().optional(),
   ozonUrl: z.string().url().optional(),
   inStock: z.boolean().default(true),
